@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>NurseDose — Your Smart Nursing Companion</title>
+<meta name="description" content="Manage patients, medications, inventory, reminders and shift tasks — all in one secure, offline-ready app." />
+<meta name="theme-color" content="#1565C0" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============ SPLASH ============ -->
+<div id="splash" class="splash">
+  <div class="splash-mark">
+    <span class="material-symbols-rounded">medication</span>
+  </div>
+  <p class="splash-name">NurseDose</p>
+</div>
+
+<!-- ============ PIN LOCK ============ -->
+<div id="view-lock" class="view lock-view" hidden>
+  <div class="lock-card glass">
+    <div class="lock-mark"><span class="material-symbols-rounded">lock</span></div>
+    <h2 id="lock-title">Enter your PIN</h2>
+    <p class="muted" id="lock-sub">Keep patient data secure on this device</p>
+    <div class="pin-dots" id="pin-dots">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="pin-pad" id="pin-pad">
+      <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+      <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+      <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+      <button data-k="clear" class="ghost-key">Clear</button><button data-k="0">0</button><button data-k="back" class="ghost-key"><span class="material-symbols-rounded">backspace</span></button>
+    </div>
+    <button id="lock-skip" class="text-link">Skip for now</button>
+  </div>
+</div>
+
+<!-- ============ LANDING PAGE ============ -->
+<div id="view-landing" class="view landing-view" hidden>
+
+  <div class="floaties" aria-hidden="true">
+    <span class="material-symbols-rounded f1">medication</span>
+    <span class="material-symbols-rounded f2">vaccines</span>
+    <span class="material-symbols-rounded f3">monitor_heart</span>
+    <span class="material-symbols-rounded f4">local_hospital</span>
+    <span class="material-symbols-rounded f5">medical_information</span>
+    <span class="material-symbols-rounded f6">inventory_2</span>
+  </div>
+
+  <header class="land-nav">
+    <div class="brand"><span class="material-symbols-rounded">medication</span> NurseDose</div>
+    <button class="icon-btn" id="landing-theme-toggle" aria-label="Toggle theme"><span class="material-symbols-rounded">dark_mode</span></button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-illustration">
+      <div class="hero-blob"></div>
+      <div class="hero-card glass float-anim">
+        <span class="material-symbols-rounded">person</span>
+        <div><strong>Nurse Aanya</strong><small>On duty · Ward 3B</small></div>
+      </div>
+      <div class="hero-card glass float-anim delay1" style="top:62%; left:6%;">
+        <span class="material-symbols-rounded">medication</span>
+        <div><strong>Paracetamol</strong><small>Due 14:00</small></div>
+      </div>
+      <div class="hero-card glass float-anim delay2" style="top:14%; left:58%;">
+        <span class="material-symbols-rounded">check_circle</span>
+        <div><strong>08:00 Given</strong><small>Bed 12</small></div>
+      </div>
+      <div class="hero-nurse">👩‍⚕️</div>
+    </div>
+    <h1>NurseDose<br /><span class="accent">Your Smart Nursing Companion</span></h1>
+    <p class="hero-sub">Manage patients, medications, inventories, reminders, and shift tasks effortlessly — all in one secure app.</p>
+    <div class="hero-actions">
+      <button class="btn-primary lg" id="btn-get-started">Get Started</button>
+      <button class="btn-ghost lg" id="btn-explore">Explore Features</button>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Everything a shift needs</h2>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="material-symbols-rounded">groups</span><h3>Patient Management</h3><p>Admissions, wards, diagnoses & allergies at a glance.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">schedule</span><h3>Medication Scheduler</h3><p>Unlimited meds, multi-dose timing, one-tap administration.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">timeline</span><h3>Dose Tracking</h3><p>Live timeline of due, given, held & missed doses.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">inventory_2</span><h3>Inventory Management</h3><p>Stock, batch, expiry & low-stock alerts.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">receipt_long</span><h3>Auto Indent Generator</h3><p>Raise, track and export supply requests.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">checklist</span><h3>Shift Checklist</h3><p>Vitals, IV, I/O, dressing & handover — nothing missed.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">menu_book</span><h3>Drug Reference</h3><p>Emergency drugs, dilutions & nursing responsibilities.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">summarize</span><h3>Reports</h3><p>Daily, shift & missed-dose reports, exportable to PDF.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">wifi_off</span><h3>Offline Access</h3><p>Works with zero signal — every screen, every time.</p></div>
+      <div class="feature-card"><span class="material-symbols-rounded">pin</span><h3>Secure PIN Lock</h3><p>Your patient data, locked to your device only.</p></div>
+    </div>
+  </section>
+
+  <section class="screens" id="screens">
+    <h2>A closer look</h2>
+    <div class="phone-row">
+      <div class="phone-mock">
+        <div class="phone-screen dash-mock">
+          <div class="mock-topbar"></div>
+          <div class="mock-stat-row"><div></div><div></div><div></div></div>
+          <div class="mock-line"></div><div class="mock-line short"></div>
+        </div>
+        <span class="phone-label">Dashboard</span>
+      </div>
+      <div class="phone-mock">
+        <div class="phone-screen list-mock">
+          <div class="mock-topbar"></div>
+          <div class="mock-row"></div><div class="mock-row"></div><div class="mock-row"></div>
+        </div>
+        <span class="phone-label">Patient List</span>
+      </div>
+      <div class="phone-mock">
+        <div class="phone-screen timeline-mock">
+          <div class="mock-topbar"></div>
+          <div class="mock-dot green"></div><div class="mock-dot amber"></div><div class="mock-dot"></div>
+        </div>
+        <span class="phone-label">Medication Schedule</span>
+      </div>
+      <div class="phone-mock">
+        <div class="phone-screen dark-mock">
+          <div class="mock-topbar dark"></div>
+          <div class="mock-line dark"></div><div class="mock-line dark short"></div>
+        </div>
+        <span class="phone-label">Dark Mode</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <h2>Why NurseDose</h2>
+    <div class="why-grid">
+      <div class="why-card"><span class="material-symbols-rounded">shield</span><p>Reduce medication errors</p></div>
+      <div class="why-card"><span class="material-symbols-rounded">notifications_active</span><p>Never miss a dose</p></div>
+      <div class="why-card"><span class="material-symbols-rounded">bolt</span><p>Track stock instantly</p></div>
+      <div class="why-card"><span class="material-symbols-rounded">swap_horiz</span><p>Fast handovers</p></div>
+      <div class="why-card"><span class="material-symbols-rounded">wifi_off</span><p>Works offline</p></div>
+      <div class="why-card"><span class="material-symbols-rounded">favorite</span><p>Personal nurse assistant</p></div>
+    </div>
+  </section>
+
+  <footer class="land-footer">
+    <button class="btn-primary lg" id="btn-get-started-2">Get Started — it's free</button>
+    <p class="muted small">Built for individual nurses. Your data stays on your device.</p>
+  </footer>
+</div>
+
+<!-- ============ APP SHELL ============ -->
+<div id="app-shell" class="app-shell" hidden>
+
+  <header class="topbar">
+    <button class="icon-btn" id="menu-btn" aria-label="Menu"><span class="material-symbols-rounded">menu</span></button>
+    <h1 id="topbar-title">Dashboard</h1>
+    <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme"><span class="material-symbols-rounded">dark_mode</span></button>
+  </header>
+
+  <!-- Drawer for secondary modules -->
+  <div id="drawer-overlay" class="drawer-overlay" hidden></div>
+  <nav id="drawer" class="drawer">
+    <div class="drawer-profile">
+      <div class="avatar"><span class="material-symbols-rounded">person</span></div>
+      <div><strong id="drawer-name">Nurse</strong><small id="drawer-sub">Tap Profile to set up</small></div>
+    </div>
+    <button class="drawer-item" data-view="reference"><span class="material-symbols-rounded">menu_book</span> Drug Reference</button>
+    <button class="drawer-item" data-view="calculators"><span class="material-symbols-rounded">calculate</span> Calculators</button>
+    <button class="drawer-item" data-view="checklist"><span class="material-symbols-rounded">checklist</span> Shift Checklist</button>
+    <button class="drawer-item" data-view="notes"><span class="material-symbols-rounded">edit_note</span> Doctor Orders &amp; Notes</button>
+    <button class="drawer-item" data-view="indent"><span class="material-symbols-rounded">receipt_long</span> Indent</button>
+    <button class="drawer-item" data-view="reports"><span class="material-symbols-rounded">summarize</span> Reports</button>
+    <button class="drawer-item" data-view="profile"><span class="material-symbols-rounded">account_circle</span> Profile &amp; Settings</button>
+    <hr />
+    <button class="drawer-item" id="drawer-landing"><span class="material-symbols-rounded">home</span> About NurseDose</button>
+  </nav>
+
+  <main id="app-main" class="app-main">
+
+    <!-- ---------- DASHBOARD ---------- -->
+    <section class="view" id="view-dashboard" data-view="dashboard">
+      <p class="greeting" id="greeting">Good morning, Nurse 👋</p>
+
+      <div class="stat-grid">
+        <button class="stat-card" data-goto="patients"><span class="material-symbols-rounded">groups</span><strong id="stat-patients">0</strong><small>Today's Patients</small></button>
+        <button class="stat-card" data-goto="medications"><span class="material-symbols-rounded">schedule</span><strong id="stat-due">0</strong><small>Due Medicines</small></button>
+        <button class="stat-card" data-goto="medications"><span class="material-symbols-rounded">task_alt</span><strong id="stat-completed">0</strong><small>Completed Doses</small></button>
+        <button class="stat-card" data-goto="checklist"><span class="material-symbols-rounded">pending_actions</span><strong id="stat-tasks">0</strong><small>Pending Tasks</small></button>
+        <button class="stat-card warn" data-goto="inventory"><span class="material-symbols-rounded">warning</span><strong id="stat-lowstock">0</strong><small>Low Stock Alerts</small></button>
+        <button class="stat-card warn" data-goto="inventory"><span class="material-symbols-rounded">event_busy</span><strong id="stat-expiry">0</strong><small>Expiring Soon</small></button>
+      </div>
+
+      <div class="quick-actions">
+        <button class="qa" id="qa-add-patient"><span class="material-symbols-rounded">person_add</span>Add Patient</button>
+        <button class="qa" id="qa-give-med"><span class="material-symbols-rounded">medication</span>Give Medicine</button>
+        <button class="qa" data-goto="inventory"><span class="material-symbols-rounded">inventory_2</span>Inventory</button>
+        <button class="qa" data-goto="indent"><span class="material-symbols-rounded">receipt_long</span>Generate Indent</button>
+        <button class="qa" data-goto="reports"><span class="material-symbols-rounded">summarize</span>Shift Report</button>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="material-symbols-rounded">timeline</span><h2>Medication Timeline</h2></div>
+        <ul class="timeline-list" id="dash-timeline"></ul>
+      </div>
+
+      <div class="card" id="dash-lowstock-card" hidden>
+        <div class="card-head warn"><span class="material-symbols-rounded">warning</span><h2>Low Stock</h2></div>
+        <ul class="simple-list" id="dash-lowstock"></ul>
+      </div>
+    </section>
+
+    <!-- ---------- PATIENTS ---------- -->
+    <section class="view" id="view-patients" data-view="patients" hidden>
+      <div class="toolbar">
+        <div class="search-box"><span class="material-symbols-rounded">search</span><input id="patient-search" placeholder="Search patients…" /></div>
+        <select id="patient-sort" class="pill-select">
+          <option value="name">Sort: Name</option>
+          <option value="bed">Sort: Bed</option>
+          <option value="priority">Sort: Priority</option>
+        </select>
+      </div>
+      <div class="filter-row" id="patient-filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="critical">Critical</button>
+        <button class="chip" data-filter="stable">Stable</button>
+        <button class="chip" data-filter="observation">Observation</button>
+      </div>
+      <ul class="card-list" id="patient-list"></ul>
+      <button class="fab" id="fab-add-patient"><span class="material-symbols-rounded">add</span></button>
+    </section>
+
+    <!-- ---------- PATIENT DETAIL ---------- -->
+    <section class="view" id="view-patient-detail" data-view="patient-detail" hidden>
+      <button class="back-link" data-goto="patients"><span class="material-symbols-rounded">arrow_back</span> Patients</button>
+      <div class="card" id="patient-detail-card"></div>
+      <div class="card">
+        <div class="card-head"><span class="material-symbols-rounded">medication</span><h2>Medications</h2>
+          <button class="mini-btn" id="pd-add-med"><span class="material-symbols-rounded">add</span></button>
+        </div>
+        <ul class="med-list" id="pd-med-list"></ul>
+      </div>
+    </section>
+
+    <!-- ---------- MEDICATIONS ---------- -->
+    <section class="view" id="view-medications" data-view="medications" hidden>
+      <div class="filter-row" id="med-filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="due">Due</button>
+        <button class="chip" data-filter="given">Given</button>
+        <button class="chip" data-filter="held">Held</button>
+        <button class="chip" data-filter="missed">Missed</button>
+      </div>
+      <ul class="card-list" id="med-list"></ul>
+      <button class="fab" id="fab-add-med"><span class="material-symbols-rounded">add</span></button>
+    </section>
+
+    <!-- ---------- INVENTORY ---------- -->
+    <section class="view" id="view-inventory" data-view="inventory" hidden>
+      <div class="toolbar">
+        <div class="search-box"><span class="material-symbols-rounded">search</span><input id="inv-search" placeholder="Search inventory…" /></div>
+      </div>
+      <ul class="card-list" id="inv-list"></ul>
+      <button class="fab" id="fab-add-inv"><span class="material-symbols-rounded">add</span></button>
+    </section>
+
+    <!-- ---------- INDENT ---------- -->
+    <section class="view" id="view-indent" data-view="indent" hidden>
+      <div class="card">
+        <div class="card-head"><span class="material-symbols-rounded">receipt_long</span><h2>Raise Indent</h2></div>
+        <div class="form-grid" id="indent-form">
+          <select id="ind-medicine"><option value="">Medicine…</option></select>
+          <input id="ind-qty" type="number" min="1" placeholder="Required qty" />
+          <input id="ind-available" type="number" min="0" placeholder="Available qty" />
+          <select id="ind-priority"><option>Routine</option><option>Urgent</option><option>Emergency</option></select>
+          <input id="ind-dept" placeholder="Department" />
+          <button class="btn-primary" id="ind-submit">Generate Indent</button>
+        </div>
+      </div>
+      <ul class="card-list" id="indent-list"></ul>
+    </section>
+
+    <!-- ---------- CHECKLIST ---------- -->
+    <section class="view" id="view-checklist" data-view="checklist" hidden>
+      <div class="card">
+        <div class="card-head"><span class="material-symbols-rounded">checklist</span><h2>Today's Shift Checklist</h2></div>
+        <ul class="check-list" id="checklist-items"></ul>
+        <div class="form-grid">
+          <textarea id="checklist-notes" placeholder="Notes for handover…" rows="3"></textarea>
+          <button class="btn-primary" id="checklist-save">Save Checklist</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- NOTES ---------- -->
+    <section class="view" id="view-notes" data-view="notes" hidden>
+      <div class="toolbar">
+        <div class="search-box"><span class="material-symbols-rounded">search</span><input id="notes-search" placeholder="Search notes…" /></div>
+      </div>
+      <div class="card">
+        <div class="form-grid">
+          <select id="note-patient"><option value="">General note (no patient)</option></select>
+          <select id="note-type"><option>Doctor Order</option><option>Nursing Note</option></select>
+          <textarea id="note-text" placeholder="Write a note…" rows="3"></textarea>
+          <div class="note-attach-row">
+            <label class="mini-btn file-btn">📷 Photo<input type="file" id="note-photo" accept="image/*" hidden /></label>
+            <button class="mini-btn" id="note-voice">🎙️ Voice note</button>
+            <span class="muted small" id="note-attach-status"></span>
+          </div>
+          <button class="btn-primary" id="note-save">Save Note</button>
+        </div>
+      </div>
+      <ul class="card-list" id="notes-list"></ul>
+    </section>
+
+    <!-- ---------- DRUG REFERENCE ---------- -->
+    <section class="view" id="view-reference" data-view="reference" hidden>
+      <div class="toolbar">
+        <div class="search-box"><span class="material-symbols-rounded">search</span><input id="ref-search" placeholder="Search drug reference…" /></div>
+      </div>
+      <p class="disclaimer"><span class="material-symbols-rounded">info</span> Quick-reference only — always confirm against your hospital's current protocols and pharmacy resources before administration.</p>
+      <ul class="card-list" id="ref-list"></ul>
+    </section>
+
+    <!-- ---------- CALCULATORS ---------- -->
+    <section class="view" id="view-calculators" data-view="calculators" hidden>
+      <div class="chip-scroll" id="calc-tabs">
+        <button class="chip active" data-calc="bmi">BMI</button>
+        <button class="chip" data-calc="ivdrip">IV Drip Rate</button>
+        <button class="chip" data-calc="pedidose">Pediatric Dose</button>
+        <button class="chip" data-calc="fluid">Fluid (Holliday-Segar)</button>
+        <button class="chip" data-calc="gcs">GCS</button>
+      </div>
+      <div class="card" id="calc-panel"></div>
+      <p class="disclaimer"><span class="material-symbols-rounded">info</span> Calculators are reference aids, not a substitute for clinical judgment or hospital protocol.</p>
+    </section>
+
+    <!-- ---------- REPORTS ---------- -->
+    <section class="view" id="view-reports" data-view="reports" hidden>
+      <div class="chip-scroll" id="report-tabs">
+        <button class="chip active" data-report="daily">Daily Medication</button>
+        <button class="chip" data-report="inventory">Inventory</button>
+        <button class="chip" data-report="missed">Missed Dose</button>
+        <button class="chip" data-report="shift">Shift Report</button>
+        <button class="chip" data-report="patient">Patient Summary</button>
+      </div>
+      <div class="card" id="report-panel"></div>
+      <div class="report-actions">
+        <button class="btn-ghost" id="report-print"><span class="material-symbols-rounded">print</span> Print</button>
+        <button class="btn-primary" id="report-pdf"><span class="material-symbols-rounded">picture_as_pdf</span> Export PDF</button>
+      </div>
+    </section>
+
+    <!-- ---------- PROFILE ---------- -->
+    <section class="view" id="view-profile" data-view="profile" hidden>
+      <div class="card profile-card">
+        <div class="avatar lg"><span class="material-symbols-rounded">person</span></div>
+        <div class="form-grid">
+          <input id="prof-name" placeholder="Full name" />
+          <input id="prof-hospital" placeholder="Hospital" />
+          <input id="prof-dept" placeholder="Department" />
+          <input id="prof-reg" placeholder="Registration number" />
+          <button class="btn-primary" id="prof-save">Save Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><span class="material-symbols-rounded">tune</span><h2>Preferences</h2></div>
+        <div class="setting-row"><span>Theme</span>
+          <select id="prof-theme"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select>
+        </div>
+        <div class="setting-row"><span>PIN Lock</span>
+          <button class="mini-btn" id="prof-pin-btn">Set / Change PIN</button>
+        </div>
+        <div class="setting-row"><span>Fingerprint unlock</span>
+          <label class="switch"><input type="checkbox" id="prof-biometric" disabled /><span class="slider"></span></label>
+        </div>
+        <p class="muted small">Fingerprint unlock requires a native app wrapper and isn't available in a browser PWA — PIN lock is the supported method here.</p>
+      </div>
+      <div class="card">
+        <div class="card-head"><span class="material-symbols-rounded">backup</span><h2>Backup &amp; Restore</h2></div>
+        <div class="form-grid">
+          <button class="btn-ghost" id="backup-export"><span class="material-symbols-rounded">download</span> Export backup (.json)</button>
+          <label class="btn-ghost file-btn"><span class="material-symbols-rounded">upload</span> Restore from backup<input type="file" id="backup-import" accept="application/json" hidden /></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><span class="material-symbols-rounded">info</span><h2>About</h2></div>
+        <p class="muted">NurseDose v1.0 — offline-first nursing companion. All data is stored locally on this device only.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="bn-item active" data-goto="dashboard"><span class="material-symbols-rounded">space_dashboard</span><small>Dashboard</small></button>
+    <button class="bn-item" data-goto="patients"><span class="material-symbols-rounded">groups</span><small>Patients</small></button>
+    <button class="bn-item" data-goto="medications"><span class="material-symbols-rounded">medication</span><small>Meds</small></button>
+    <button class="bn-item" data-goto="inventory"><span class="material-symbols-rounded">inventory_2</span><small>Stock</small></button>
+    <button class="bn-item" id="bn-more"><span class="material-symbols-rounded">more_horiz</span><small>More</small></button>
+  </nav>
+</div>
+
+<!-- ============ MODAL ROOT ============ -->
+<div id="modal-root" class="modal-root" hidden>
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <div class="modal-sheet" id="modal-sheet"></div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="js/db.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
